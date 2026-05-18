@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="masthead" style="background-image: url('{% static "img/portfolio-bg.jpg" %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Portafolio</h1>
+          <span class="subheading">Mis trabajos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container mt-5">
+
+{% for proyecto in proyectos %}
+
+<div class="card mb-5">
+
+    {% if proyecto.imagen %}
+    <img src="{{ proyecto.imagen.url }}"
+     class="rounded mx-auto d-block"
+     style="width: 250px; height: 180px; object-fit: cover;">
+    {% endif %}
+
+    <div class="card-body">
+
+        <h3>{{ proyecto.titulo }}</h3>
+
+        <p>{{ proyecto.descripcion }}</p>
+
+        {% if proyecto.link %}
+        <a href="{{ proyecto.link }}"
+           target="_blank"
+           class="btn btn-primary">
+           Ver Proyecto
+        </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
